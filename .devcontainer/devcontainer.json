@@ -1,0 +1,39 @@
+{
+  "name": "articles_dc_fastapi_startrek",
+  "dockerComposeFile": [
+    "docker-compose.yml"
+  ],
+  "forwardPorts": [
+    8000
+  ],
+  "customizations": {
+    // Configure properties specific to VS Code.
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "files.eol": "\n",
+        "editor.formatOnSave": true,
+        "editor.formatOnSaveMode": "file",
+        "git.rebaseWhenSync": true,
+        "remote.restoreForwardedPorts": false,
+        "remote.autoForwardPorts": false,
+        "typescript.preferences.quoteStyle": "single"
+      },
+      "extensions": [
+        "PKief.material-icon-theme",
+        "ms-python.python",
+        "anweber.vscode-httpyac",
+        "asciidoctor.asciidoctor-vscode",
+        "GitHub.vscode-github-actions",
+        "ritwickdey.LiveServer",
+        "qwtel.sqlite-viewer",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+  "service": "articles_dc_fastapi_startrek",
+  "workspaceFolder": "/src",
+  "remoteUser": "vscode",
+  "postStartCommand": "pip install -r requirements.in; ptw *.py",
+  "shutdownAction": "stopCompose"
+}
