@@ -29,3 +29,23 @@ jobs:
       - name: Run tests w coverage report
         run: pytest test_main.py --junitxml=junit/test-results.xml --cov=. --cov-report=html
 
+  deploy_project_to_github_pages:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+            # Upload the coverage directory from the repository
+            path: './htmlcov'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+
