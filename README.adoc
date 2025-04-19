@@ -13,6 +13,8 @@ The branches will be named after the part they represent.
 The branches are:
 
 - `phase-0`: Basic FastAPI app with all dependencies, a simple GET endpoint and test code. A Makefile is included to show how to run the tests and stuff. A Pipeline is included to run the tests on every commit. Coverage reports are generated and published to https://cwacoderwithattitude.github.io/articles_dc_fastapi_startrek/[github pages].
+- `crud`: Add a simple CRUD API to the app. This will allow us to create, read, update and delete data on ships from the Startrek universe. The data will be stored in a SQLite database. Our test coverage enables us to refactor our code without any doubt on correct functionality.
+
 
 == Developement
 In general i'll stick to building the API in a TDD way. Tests are written in https://docs.pytest.org/en/stable/[pytest].

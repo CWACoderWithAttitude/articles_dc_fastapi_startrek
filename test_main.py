@@ -1,5 +1,6 @@
 from typing import Any, Generator
-from main import app, get_session
+from main import app
+from routers.ships_router import get_session
 import pytest
 from fastapi.testclient import TestClient
 from fastapi import status
