@@ -34,6 +34,7 @@
   "service": "articles_dc_fastapi_startrek",
   "workspaceFolder": "/src",
   "remoteUser": "vscode",
-  "postStartCommand": "pip install -r requirements.in; ptw *.py",
+  "postCreateCommand": "pip install -r requirements.in && pip install xq",
+  "postStartCommand": "ptw *.py",
   "shutdownAction": "stopCompose"
 }

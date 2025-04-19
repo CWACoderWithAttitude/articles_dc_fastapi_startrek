@@ -1,4 +1,30 @@
-from fastapi import FastAPI
+from typing import Any, Generator
+from fastapi import FastAPI, HTTPException
+from fastapi import Depends, status
+from sqlmodel import Field, SQLModel, Session, create_engine, select
+
+
+def get_session() -> Generator[Session, Any, None]:
+    with Session(engine) as session:
+        yield session
+
+
+class Ship(SQLModel, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+    name: str = Field(index=True)
+    classification: str = Field(index=True)
+    sign: str | None = Field(default=None, index=True)
+    speed: str | None = Field(default=None, index=True)
+    captain: str | None = Field(default=None, index=True)
+    comment: str | None = Field(default=None, index=True)
+    url: str | None = Field(default=None, index=True)
+
+
+DATABASE_URL = "sqlite:///./startrek-ships.db"
+print(f"Using database URL: {DATABASE_URL}")
+engine = create_engine(DATABASE_URL, echo=True)
+SQLModel.metadata.create_all(engine)
+
 
 app = FastAPI()
 
@@ -7,6 +33,39 @@ app = FastAPI()
 async def root() -> dict[str, str]:
     return {"message": "Welcome to the FastAPI application!"}
 
+
+@app.post("/ships/", response_model=Ship, tags=["startrek", "ships"], status_code=status.HTTP_201_CREATED)
+async def create_ship(ship: Ship, session: Session = Depends(get_session)):
+    session.add(ship)
+    session.commit()
+    session.refresh(ship)
+    return ship
+
+@app.get("/ships/", response_model=list[Ship], tags=["startrek", "ships"], status_code=status.HTTP_200_OK)
+async def get_ships(skip: int = 0, limit: int = 10, session: Session = Depends(get_session)):
+    ships = session.exec(select(Ship).offset(skip).limit(limit)).all()
+    return ships
+
+@app.put("/ships/{ship_id}", response_model=Ship, tags=["startrek", "ships"], status_code=status.HTTP_200_OK)
+async def update_ship(ship_id: int, ship: Ship, session: Session = Depends(get_session)):
+    db_ship = session.get(Ship, ship_id)
+    if not db_ship:
+        return {"error": "Ship not found"}
+    for key, value in ship.model_dump(exclude_unset=True).items():
+        setattr(db_ship, key, value)
+    session.add(db_ship)
+    session.commit()
+    session.refresh(db_ship)
+    return db_ship
+
+@app.delete("/ships/{ship_id}", tags=["startrek", "ships"], status_code=status.HTTP_204_NO_CONTENT)
+async def delete_ship(ship_id: int, session: Session = Depends(get_session)) -> None:
+    db_ship = session.get(Ship, ship_id)
+    if not db_ship:
+        raise HTTPException(status_code=404, detail=f"Ship {ship_id} not found")
+    session.delete(db_ship)
+    session.commit()
+    return None#{"message": f"Ship #{ship_id} deleted successfully"}
 if __name__ == "__main__":  # pragma: no cover
     import uvicorn
 
