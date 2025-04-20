@@ -1,0 +1,29 @@
+# Create a simple ship
+@port=8000
+@host=localhost
+GET http://{{host}}:{{port}}/ships/
+
+### Create a ship with a name
+POST http://{{host}}:{{port}}/ships/
+Content-Type: application/json
+
+{
+    "name": "USS Franklin",
+    "sign": "NX-326",
+    "classification": "Starship"
+}
+
+
+# Create a full ship
+POST http://{{host}}:{{port}}/ships/
+Content-Type: application/json
+
+{
+    "name": "USS Franklin",
+    "sign": "NX-326",
+    "classification": "Starship",
+    "speed": "Warp 4",
+    "captain": "balthazar edison",
+    "comment": "lost ~2160, first warp 4 capable ship",
+    "url":"https://memory-alpha.fandom.com/wiki/Star_Trek:_The_Next_Generation"
+}

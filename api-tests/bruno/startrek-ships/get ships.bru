@@ -1,0 +1,29 @@
+meta {
+  name: get ships
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:18000/ship
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 201
+}
+
+tests {
+  test("getting ships should be OK", function () {
+    const data = res.getBody();
+    expect(res.getStatus()).to.equal(200);
+  });
+   
+  test("should return json", function () {
+    const data = res.getBody();
+    expect(res.getBody()).to.eql({
+      hello: "Bruno",
+    });
+  });
+}

@@ -7,6 +7,7 @@ from fastapi import status
 from sqlmodel import Session, create_engine, SQLModel
 from sqlmodel.pool import StaticPool
 
+
 @pytest.fixture(name="session")
 def session_fixture():
     engine = create_engine(
@@ -16,8 +17,9 @@ def session_fixture():
     with Session(engine) as session:
         yield session
 
+
 @pytest.fixture(name="client")
-def client_fixture(session:Session) -> Generator[TestClient, Any, None]:
+def client_fixture(session: Session) -> Generator[TestClient, Any, None]:
     """
     Create a test client for the FastAPI app.
     This way we can depedency inject the test client into every test case."""
@@ -31,6 +33,7 @@ def client_fixture(session:Session) -> Generator[TestClient, Any, None]:
     yield client
     # clear the dependency overrides after the test
     app.dependency_overrides.clear()
+
 
 def test_get_info(client: TestClient) -> None:
     """
@@ -67,6 +70,7 @@ def test_create_ship(client: TestClient) -> None:
     assert response_json['speed'] == 'Test Speed'
     assert response_json['id'] >= 1
 
+
 def _create_mock_ships(client: TestClient, count: int) -> None:
     """
     Create mock ships for testing.
@@ -82,6 +86,7 @@ def _create_mock_ships(client: TestClient, count: int) -> None:
             "url": f"http://example.com/{i}"
         })
 
+
 def test_get_all_ships(client: TestClient) -> None:
     """
     Test the /ships/ endpoint.
@@ -94,6 +99,7 @@ def test_get_all_ships(client: TestClient) -> None:
     assert response_json != None
     assert len(response_json) == 5
 
+
 def test_get_ships_limit(client: TestClient) -> None:
     """
     Test the /ships/ endpoint and limit the result count.
@@ -105,6 +111,7 @@ def test_get_ships_limit(client: TestClient) -> None:
     response_json = response.json()
     assert response_json != None
     assert len(response_json) == 2
+
 
 def test_update_ship(client: TestClient) -> None:
     """
@@ -139,6 +146,7 @@ def test_update_ship(client: TestClient) -> None:
     assert response_json != None
     assert response_json['name'] == 'Updated Ship'
 
+
 def test_delete_non_existing_ship(client: TestClient) -> None:
     """
     Test the delete /ships/ endpoint for a non existing ship.
@@ -147,6 +155,7 @@ def test_delete_non_existing_ship(client: TestClient) -> None:
     ship_id = 4711
     response = client.delete(f"/ships/{ship_id}")
     assert response.status_code == status.HTTP_404_NOT_FOUND
+
 
 def test_delete_existing_ship(client: TestClient) -> None:
     """
