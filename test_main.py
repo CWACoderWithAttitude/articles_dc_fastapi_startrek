@@ -168,3 +168,11 @@ def test_delete_existing_ship(client: TestClient) -> None:
     r = client.get("/ships/")
     r_json = r.json()
     assert len(r_json) == 10
+
+
+def test_check_metrics_endpoint(client: TestClient) -> None:
+    """
+    Test the /metrics endpoint.
+    """
+    response = client.get("/metrics")
+    assert response.status_code == status.HTTP_200_OK
