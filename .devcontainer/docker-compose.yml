@@ -44,6 +44,20 @@ services:
       - startrek_db
     networks:
       articles_dc_fastapi_startrek-net:
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - ${prometheus_port}:9090
+    volumes:
+      - ./prometheus_config/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--web.enable-lifecycle'
+    networks:
+      articles_dc_fastapi_startrek-net:
+
 networks:
   articles_dc_fastapi_startrek-net:
 
