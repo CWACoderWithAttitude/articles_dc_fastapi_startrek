@@ -10,7 +10,7 @@
     // Configure properties specific to VS Code.
     "vscode": {
       "settings": {
-        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.defaultProfile.linux": "zsh",
         "files.eol": "\n",
         "editor.formatOnSave": true,
         "editor.formatOnSaveMode": "file",
@@ -27,13 +27,20 @@
         "GitHub.vscode-github-actions",
         "ritwickdey.LiveServer",
         "qwtel.sqlite-viewer",
-        "ms-azuretools.vscode-docker"
+        "ms-azuretools.vscode-docker",
+        "ms-vscode.makefile-tools"
       ]
     }
   },
   "service": "articles_dc_fastapi_startrek",
   "workspaceFolder": "/src",
   "remoteUser": "vscode",
-  "postStartCommand": "pip install -r requirements.in; ptw *.py",
-  "shutdownAction": "stopCompose"
+  "postCreateCommand": "pip install -r requirements.in && pip install xq",
+  "postStartCommand": "ptw *.py",
+  "shutdownAction": "stopCompose",
+  "features": {
+    // Allow the devcontainer to run host docker commands, see https://github.com/devcontainers/templates/tree/main/src/docker-outside-of-docker
+    // from https://stackoverflow.com/questions/61696029/docker-in-docker-setup-with-vscode-dev-containers-how-to-access-running-docker
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+  }
 }

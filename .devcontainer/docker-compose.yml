@@ -13,9 +13,40 @@ services:
       bash -c "sleep infinity"
     ports:
       - "${app_port}:8000"
+    depends_on:
+      - startrek_db
     networks:
       articles_dc_fastapi_startrek-net:
 
-      
+  startrek_db:
+  #image: postgres:17.4-alpine3.21
+    image: postgres:14.1-alpine
+    container_name: startrek_db
+    restart: always
+    environment:
+      - POSTGRES_USER=${db_user}
+      - POSTGRES_PASSWORD=${db_password}
+      - POSTGRES_DB=${db_name}
+    ports:
+      - "${db_ext_port}:5432"
+    networks:
+      articles_dc_fastapi_startrek-net:
+    volumes:
+     - db_data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer:5.0.4
+    container_name: adminer
+    restart: always
+    ports:
+      - ${adminer_port}:8080
+    depends_on:
+      - startrek_db
+    networks:
+      articles_dc_fastapi_startrek-net:
 networks:
   articles_dc_fastapi_startrek-net:
+
+volumes:
+  db_data: 
+    driver: local

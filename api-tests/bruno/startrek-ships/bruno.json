@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Startrek-Ships",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

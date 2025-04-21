@@ -4,3 +4,6 @@ pytest
 pytest-watch
 pytest-cov
 httpx
+sqlmodel
+pydantic-settings
+psycopg2
