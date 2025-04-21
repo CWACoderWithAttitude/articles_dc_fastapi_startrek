@@ -176,3 +176,7 @@ def test_check_metrics_endpoint(client: TestClient) -> None:
     """
     response = client.get("/metrics")
     assert response.status_code == status.HTTP_200_OK
+    assert response.headers['content-type'].startswith(
+        'text/plain; version=0.0.4')
+    assert response.text.startswith(
+        "# HELP python_gc_objects_collected_total Objects collected during gc")
