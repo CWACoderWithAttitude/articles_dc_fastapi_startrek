@@ -17,6 +17,9 @@ The branches are:
     * replaced sqlite with a PostgreSQL db.
     * added DB Adminer to provide a used friendly interface to the database.
     * added scripts to show how to test the API with https://github.com/AnWeber/vscode-httpyac[httpyac] and Bruno.
+- `monitoring`: Add monitoring to the app.
+    * At first we'll have the app export metrics to https://prometheus.io/[Prometheus]
+    
 
 == Developement
 In general i'll stick to building the API in a TDD way. Tests are written in https://docs.pytest.org/en/stable/[pytest].
