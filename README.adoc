@@ -30,3 +30,6 @@ In general i'll stick to building the API in a TDD way. Tests are written in htt
 - https://www.youtube.com/@ArjanCodes[@ArjanCodes] is a great channel to learn about FastAPI and Python in general.
 - https://fastapi.tiangolo.com/[fastapi.tiangolo.com] is the official documentation for FastAPI.
 - https://www.usebruno.com[Bruno] makes a fine replacement for Postman, Insomnia and other API testing tools.
+
+== ToDos
+- https://www.freecodecamp.org/news/how-to-run-github-actions-locally/s[Test Guhub Actions locally] w act

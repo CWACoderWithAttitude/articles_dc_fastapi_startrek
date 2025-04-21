@@ -30,7 +30,7 @@ jobs:
           # Semantic version range syntax or exact version of a Python version
           python-version: '3.11'
           # Optional - x64 or x86 architecture, defaults to x64
-          architecture: 'x64'
+          architecture: 'linux/arm64'
       # You can test your matrix by printing the current Python version
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
@@ -50,27 +50,7 @@ jobs:
         with:
             # Upload the coverage directory from the repository
             path: './htmlcov'
-      - name: Deploy to GitHub Pages
+      - name: Deploy coverage report to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-  # deploy_project_to_github_pages:
-  #   environment:
-  #     name: github-pages
-  #     url: ${{ steps.deployment.outputs.page_url }}
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v4
-  #     - name: Setup Pages
-  #       uses: actions/configure-pages@v5
-  #     - name: Upload artifact
-  #       uses: actions/upload-pages-artifact@v3
-  #       with:
-  #           # Upload the coverage directory from the repository
-  #           path: '.' #/htmlcov'
-  #     - name: Deploy to GitHub Pages
-  #       id: deployment
-  #       uses: actions/deploy-pages@v4
-
-
+          

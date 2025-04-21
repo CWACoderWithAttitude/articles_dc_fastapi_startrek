@@ -11,3 +11,4 @@ wheels/
 htmlcov/
 .coverage
 coverage.xml
+startrek-ships.db
