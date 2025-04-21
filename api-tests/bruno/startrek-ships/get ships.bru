@@ -5,13 +5,13 @@ meta {
 }
 
 get {
-  url: http://localhost:18000/ship
+  url: http://localhost:{{app_port}}/ships
   body: none
   auth: none
 }
 
 assert {
-  res.status: eq 201
+  res.status: eq 200
 }
 
 tests {

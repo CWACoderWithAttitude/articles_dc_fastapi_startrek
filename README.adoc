@@ -18,7 +18,11 @@ The branches are:
     * added DB Adminer to provide a used friendly interface to the database.
     * added scripts to show how to test the API with https://github.com/AnWeber/vscode-httpyac[httpyac] and Bruno.
 - `monitoring`: Add monitoring to the app.
-    * At first we'll have the app export metrics to https://prometheus.io/[Prometheus]
+    * At first we'll have the app export metrics for https://prometheus.io/[Prometheus]
+    * Next we'll add prometheus to our setup and configure it to scrape metrics from our app and from prometheus itself
+    ** Prometheus is configured to reread its config w/o restart. Please refer to bruno collection for details.
+
+include::api-tests/bruno/startrek-ships/prometheus_reread_config.bru[lines=8..8]    
     
 
 == Developement
@@ -28,6 +32,7 @@ In general i'll stick to building the API in a TDD way. Tests are written in htt
 - http://localhost:8000/docs[Swagger UI]
 - http://localhost:8000/redoc[ReDoc]
 - http://localhost:8010/?pgsql=startrek_db&username=star&db=star-trek-db&ns=public[DB Adminer]
+- http://localhost:8090/targets[Prometheus Targets] Check scraping metrics from endpoints is OK
 
 == General Links
 - https://www.youtube.com/@ArjanCodes[@ArjanCodes] is a great channel to learn about FastAPI and Python in general.

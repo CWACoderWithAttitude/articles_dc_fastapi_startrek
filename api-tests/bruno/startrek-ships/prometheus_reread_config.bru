@@ -1,29 +1,17 @@
 meta {
-  name: create ship
+  name: prometheus > reread config
   type: http
-  seq: 3
+  seq: 5
 }
 
 post {
-  url: http://localhost:{{app_port}}/ships
+  url: http://localhost:{{prometheus_port}}/-/reload
   body: json
   auth: none
 }
 
 headers {
   Content-Type: application/json
-}
-
-body:json {
-  {
-          "name": "USS Franklin",
-          "sign": "NX-326",
-          "classification": "Starship",
-          "speed": "Warp 4",
-          "captain": "balthazar edison",
-          "comment": "lost ~2160, first warp 4 capable ship",
-          "url": "https://memory-alpha.fandom.com/wiki/Star_Trek:_The_Next_Generation"
-  }
 }
 
 assert {
