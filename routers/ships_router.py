@@ -112,7 +112,8 @@ async def update_ship(ship_id: int, ship: Ship, session: Session = Depends(get_s
     """
     db_ship = session.get(Ship, ship_id)
     if not db_ship:
-        return {"error": f"Ship {ship_id} not found"}
+        raise HTTPException(
+            status_code=404, detail=f"Ship {ship_id} not found")
     for key, value in ship.model_dump(exclude_unset=True).items():
         setattr(db_ship, key, value)
     session.add(db_ship)

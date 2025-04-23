@@ -139,7 +139,7 @@ def test_get_ships_limit(client: TestClient) -> None:
     assert len(response_json) == 2
 
 
-def test_update_ship(client: TestClient) -> None:
+def test_update_existing_ship(client: TestClient) -> None:
     """
     Test the /ships/ endpoint.
     """
@@ -171,6 +171,27 @@ def test_update_ship(client: TestClient) -> None:
     response_json = response.json()
     assert response_json != None
     assert response_json['name'] == 'Updated Ship'
+
+
+def test_update_non_existing_ship(client: TestClient) -> None:
+    """
+    Test the /ships/ endpoint.
+    """
+    ship_id = 9999  # response_json['id']
+    response = client.put(f"/ships/{ship_id}", json={
+        "name": "Updated Ship",
+        "classification": "Updated Classification",
+        "sign": "Updated Sign",
+        "speed": "Updated Speed",
+        "captain": "Updated Captain",
+        "comment": "Updated Comment",
+        "url": "http://example.com/updated"
+    })
+    assert response.status_code == status.HTTP_404_NOT_FOUND
+    assert response.headers['content-type'] == 'application/json'
+    response_json = response.json()
+    assert response_json != None
+    assert response_json['detail'] == f'Ship {ship_id} not found'
 
 
 def test_delete_non_existing_ship(client: TestClient) -> None:
