@@ -33,6 +33,20 @@ In general i'll stick to building the API in a TDD way. Tests are written in htt
 - http://localhost:8000/redoc[ReDoc]
 - http://localhost:8010/?pgsql=startrek_db&username=star&db=star-trek-db&ns=public[DB Adminer]
 - http://localhost:8090/targets[Prometheus Targets] Check scraping metrics from endpoints is OK
+- http://localhost:8030/?orgId=1&from=now-6h&to=now&timezone=browser[Grafana]
+- http://localhost:9093/#/alerts[AlertManager]
+
+[cols="1,1"]  
+|===
+| http://localhost:8000/docs[Swagger UI] OpenAPI aka Swagger | OK
+| http://localhost:8000/redoc[ReDoc] | OK
+| http://localhost:8010/?pgsql=startrek_db&username=star&db=star-trek-db&ns=public[DB Adminer] DB Admin Frontend | OK
+| http://localhost:8090/targets[Prometheus Targets] Check scraping metrics from endpoints is | OK 
+| http://localhost:8030/?orgId=1&from=now-6h&to=now&timezone=browser[Grafana] Visualize Metrics| OK
+| http://localhost:9093/#/alerts[AlertManager] | NOK
+| http://localhost:1080[Fake SMTP] Apps may send SMTP Mails to Pot 1025 | NOK
+
+|=== 
 
 == General Links
 - https://www.youtube.com/@ArjanCodes[@ArjanCodes] is a great channel to learn about FastAPI and Python in general.
@@ -41,3 +55,5 @@ In general i'll stick to building the API in a TDD way. Tests are written in htt
 
 == ToDos
 - https://www.freecodecamp.org/news/how-to-run-github-actions-locally/s[Test Guhub Actions locally] w act
+- Integrate alerting into the setup. This will be done with https://prometheus.io/docs/alerting/latest/alertmanager/[AlertManager] and https://grafana.com/docs/grafana/latest/alerting/notifications/[Grafana Alerting] and https://blog.devops.dev/send-email-alerts-using-prometheus-alert-manager-16df870144a4[Send email alerts using Prometheus Alert Manager]
+- Add https://github.com/haravich/fake-smtp-server[fake smtp] server to enanble local test of alertmanager and grafana
