@@ -13,3 +13,4 @@ htmlcov/
 coverage.xml
 startrek-ships.db
 frontends/
+junit/test-results.xml
