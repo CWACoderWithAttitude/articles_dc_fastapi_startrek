@@ -13,6 +13,7 @@ services:
       bash -c "sleep infinity"
     ports:
       - "${app_port}:8000"
+      - "${nicegui_port}:8080"
     depends_on:
       - startrek_db
     networks:
@@ -48,6 +49,7 @@ services:
   prometheus:
     image: prom/prometheus
     container_name: prometheus
+    hostname: prometheus.local
     ports:
       - ${prometheus_port}:9090
     volumes:
@@ -58,9 +60,49 @@ services:
     networks:
       articles_dc_fastapi_startrek-net:
 
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - ${grafana_port}:3000
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+       - prometheus
+    networks:
+      articles_dc_fastapi_startrek-net:
+
+  alertmanager:
+    image: prom/alertmanager:latest
+    restart: unless-stopped
+    container_name: alertmgr
+    hostname: alertmanager.local
+    ports:
+      - ${alertmanager_port}:9093
+    volumes:
+      - "./alertmanager:/config"
+      - alertmanager-data:/data
+    command: --config.file=/config/alertmanager.yml --log.level=debug
+    networks:
+      articles_dc_fastapi_startrek-net:
+
+  mailcatcher:
+    restart: on-failure
+    image: reachfive/fake-smtp-server
+    hostname: mailcatcher.local
+    ports:
+    - "1080:1080"
+    - "1025:1025"
+    networks:
+      articles_dc_fastapi_startrek-net:
+
 networks:
   articles_dc_fastapi_startrek-net:
 
 volumes:
   db_data: 
+    driver: local
+  grafana_data:
+    driver: local
+  alertmanager-data:
     driver: local

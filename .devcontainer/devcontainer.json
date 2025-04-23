@@ -28,7 +28,8 @@
         "ritwickdey.LiveServer",
         "qwtel.sqlite-viewer",
         "ms-azuretools.vscode-docker",
-        "ms-vscode.makefile-tools"
+        "ms-vscode.makefile-tools",
+        "GitHub.copilot-chat"
       ]
     }
   },
