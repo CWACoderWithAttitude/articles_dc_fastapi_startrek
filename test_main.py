@@ -100,6 +100,32 @@ def test_get_all_ships(client: TestClient) -> None:
     assert len(response_json) == 5
 
 
+def test_ship_by_non_existing_id(client: TestClient) -> None:
+    """
+    Test the /ships/{ship_id} endpoint.
+    """
+    _create_mock_ships(client, 5)
+    response = client.get("/ships/6")
+    assert response.status_code == status.HTTP_404_NOT_FOUND
+
+
+def test_ship_by_existing_id(client: TestClient) -> None:
+    """
+    Test the /ships/{ship_id} endpoint.
+    """
+    _create_mock_ships(client, 3)
+    id_to_query = 3
+    response = client.get(f"/ships/{id_to_query}")
+    assert response.status_code == status.HTTP_200_OK
+    assert response.headers['content-type'] == 'application/json'
+    response_json = response.json()
+    assert response_json != None
+    assert response_json['id'] == id_to_query
+    assert response_json['name'] == f'Test Ship {id_to_query-1}'
+    assert response_json['classification'] == f'Test Classification {id_to_query-1}'
+    assert response_json['sign'] == f'Test Sign {id_to_query-1}'
+
+
 def test_get_ships_limit(client: TestClient) -> None:
     """
     Test the /ships/ endpoint and limit the result count.
