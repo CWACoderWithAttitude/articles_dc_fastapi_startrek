@@ -1,0 +1,29 @@
+meta {
+  name: get ship by non existing id
+  type: http
+  seq: 8
+}
+
+get {
+  url: http://localhost:{{app_port}}/ships/65535
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 404
+}
+
+tests {
+  test("getting ships should be OK", function () {
+    const data = res.getBody();
+    expect(res.getStatus()).to.equal(404);
+  });
+   
+  test("check corect error message iis returned", function () {
+    const data = res.getBody();
+    
+    expect(data.detail).to.eql('Ship 65535 not found')
+    
+  });
+}

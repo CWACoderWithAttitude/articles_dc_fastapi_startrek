@@ -58,3 +58,4 @@ In general i'll stick to building the API in a TDD way. Tests are written in htt
 - https://www.freecodecamp.org/news/how-to-run-github-actions-locally/s[Test Guhub Actions locally] w act
 - Integrate alerting into the setup. This will be done with https://prometheus.io/docs/alerting/latest/alertmanager/[AlertManager] and https://grafana.com/docs/grafana/latest/alerting/notifications/[Grafana Alerting] and https://blog.devops.dev/send-email-alerts-using-prometheus-alert-manager-16df870144a4[Send email alerts using Prometheus Alert Manager]
 - Add https://github.com/haravich/fake-smtp-server[fake smtp] server to enanble local test of alertmanager and grafana
+- Add https://dev.to/sivakumarmanoharan/caching-in-fastapi-unlocking-high-performance-development-20ej[Caching in FastAPI: Unlocking High-Performance Development]

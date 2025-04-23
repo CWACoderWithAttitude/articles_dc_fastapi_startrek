@@ -1,0 +1,32 @@
+meta {
+  name: get ship by existing id
+  type: http
+  seq: 7
+}
+
+get {
+  url: http://localhost:{{app_port}}/ships/5
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  test("getting ships should be OK", function () {
+    const data = res.getBody();
+    expect(res.getStatus()).to.equal(200);
+  });
+   
+  test("should return correct ship data", function () {
+    const data = res.getBody();
+    
+    expect(data.id).to.eql(5)
+    expect(data.name).to.eql('USS Franklin')
+    expect(data['classification']).to.eql('Starship')
+    expect(data['speed']).to.eql('Warp 4')
+    //you get the idea..
+  });
+}
