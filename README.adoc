@@ -41,7 +41,8 @@ In general i'll stick to building the API in a TDD way. Tests are written in htt
 | http://localhost:8000/docs[Swagger UI] OpenAPI aka Swagger | OK
 | http://localhost:8000/redoc[ReDoc] | OK
 | http://localhost:8010/?pgsql=startrek_db&username=star&db=star-trek-db&ns=public[DB Adminer] DB Admin Frontend | OK
-| http://localhost:8090/targets[Prometheus Targets] Check scraping metrics from endpoints is | OK 
+| http://localhost:8090/targets[Prometheus Targets] Check scraping metrics from endpoints is healthy | OK 
+| http://localhost:8090/query?g0.expr=http_requests_total%7Binstance%3D%22articles_dc_fastapi_startrek.local%3A8000%22%2C+method%3D%22POST%22%7D&g0.show_tree=1&g0.tab=graph&g0.range_input=1h&g0.res_type=auto&g0.res_density=medium&g0.display_mode=lines&g0.show_exemplars=0[Prometheus > All Requests > POST] All Post Requests | OK 
 | http://localhost:8030/?orgId=1&from=now-6h&to=now&timezone=browser[Grafana] Visualize Metrics| OK
 | http://localhost:9093/#/alerts[AlertManager] | NOK
 | http://localhost:1080[Fake SMTP] Apps may send SMTP Mails to Pot 1025 | NOK
