@@ -1,3 +1,4 @@
+from fastapi import Request
 from fastapi import APIRouter, HTTPException, Request, status, Depends
 from sqlmodel import SQLModel, Field, Session, create_engine, select
 from typing import Any, Generator, Sequence
@@ -139,3 +140,33 @@ async def delete_ship(ship_id: int, session: Session = Depends(get_session)) -> 
     session.delete(db_ship)
     session.commit()
     return None
+
+# ...existing code...
+
+
+@router.post("/upload-json", tags=["upload"])
+async def upload_json(request: Request) -> dict[str, Any]:
+    """
+    Import number of ships from JSON file.
+    Args:
+        request (Request): The incoming request containing the JSON payload.
+    Returns:
+        dict[str, Any]: A dictionary containing the message and the received JSON data.
+    Raises:
+        HTTPException: If the JSON data is invalid.
+    1. Parse the incoming JSON payload.
+    2. Return a success message with the received JSON data.
+    3. Raise an HTTPException if the JSON data is invalid.
+    4. The function is asynchronous and uses FastAPI's Request object to handle the incoming request.
+    5. The function returns a dictionary containing a success message and the received JSON data.
+    6. If the JSON data is invalid, it raises an HTTPException with a 400 status code and an error message.
+    """
+    try:
+        json_data = await request.json()  # Parse the incoming JSON payload
+        return {"message": "JSON received successfully!", "data": json_data}
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Invalid JSON data: {str(e)}"
+        )
+# ...existing code...

@@ -227,3 +227,27 @@ def test_check_metrics_endpoint(client: TestClient) -> None:
         'text/plain; version=0.0.4')
     assert response.text.startswith(
         "# HELP python_gc_objects_collected_total Objects collected during gc")
+
+
+def test_upload_json_invalid(client: TestClient) -> None:
+    """
+    Test the /upload-json endpoint with invalid JSON data.
+    """
+    payload = "invalid-json"
+    response = client.post("/ships/upload-json", data=payload,
+                           headers={"Content-Type": "application/json"})
+    assert response.status_code == 400
+    assert "Invalid JSON data" in response.json()["detail"]
+
+
+def test_upload_json_success(client):
+    """
+    Test the /upload-json endpoint with valid JSON data.
+    """
+    payload = {"key": "value"}
+    response = client.post("/ships/upload-json", json=payload)
+    assert response.status_code == 200
+    assert response.json() == {
+        "message": "JSON received successfully!",
+        "data": payload,
+    }

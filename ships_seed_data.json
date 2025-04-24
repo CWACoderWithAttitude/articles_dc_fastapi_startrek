@@ -1,0 +1,292 @@
+[
+    {
+        "name": "USS Cerritos",
+        "sign": "NCC-75567",
+        "classification": "California"
+    },
+    {
+        "name": "USS Kelcie Mae",
+        "sign": "NCC-618",
+        "classification": "Kelcie Mae",
+        "details": "https://memory-alpha.fandom.com/wiki/USS_Kelcie_Mae"
+    },
+    {
+        "name": "USS Cayuga",
+        "captain": "Captain Marie Batel",
+        "sign": "NCC-1557",
+        "classification": "Constitution",
+        "details": "https://memory-alpha.fandom.com/wiki/USS_Cayuga"
+    },
+    {
+        "name": " USS Talos",
+        "captain": "Captain Marie Batel",
+        "sign": "NCC-",
+        "classification": "",
+        "details": "https://memory-alpha.fandom.com/wiki/USS_Talos"
+    },
+    {
+        "name": "USS Dauntless",
+        "sign": "NCC-80816",
+        "classification": "Dauntless",
+        "details": "https://memory-alpha.fandom.com/wiki/USS_Dauntless_(NCC-80816)"
+    },
+    {
+        "name": "USS Protonstar",
+        "sign": "NX-76884-",
+        "classification": "Protonstar",
+        "url": "https://memory-alpha.fandom.com/wiki/USS_Protostar"
+    },
+    {
+        "name": "USS Defiant",
+        "sign": "NCC-1764",
+        "classification": "Constitution"
+    },
+    {
+        "name": "USS Defiant",
+        "sign": "NX-74205",
+        "classification": "Defiant",
+        "url": "https://memory-alpha.fandom.com/wiki/USS_Defiant_(2370)"
+    },
+    {
+        "name": "USS Enterprise",
+        "sign": "NX-01",
+        "classification": "NX",
+        "url": "https://memory-alpha.fandom.com/wiki/Enterprise_(NX-01)"
+    },
+    {
+        "name": "USS Franklin",
+        "sign": "NX-326",
+        "classification": "Starship",
+        "speed": "Warp 4",
+        "captain": "balthazar edison",
+        "comment": "lost ~2160, first warp 4 capable ship",
+        "url": "https://memory-alpha.fandom.com/wiki/USS_Franklin"
+    },
+    {
+        "name": "USS Enterprise",
+        "sign": "NCC-1701",
+        "classification": "Constitution",
+        "url": "https://memory-alpha.fandom.com/wiki/USS_Enterprise_(NCC-1701)"
+    },
+    {
+        "name": "USS Enterprise",
+        "sign": "NCC-1701-A",
+        "classification": "Constitution II",
+        "url": "https://memory-alpha.fandom.com/wiki/USS_Enterprise_(NCC-1701-A)"
+    },
+    {
+        "name": "USS Enterprise",
+        "sign": "NCC-1701-B",
+        "classification": "Excelsior",
+        "url": "https://memory-alpha.fandom.com/wiki/USS_Enterprise_(NCC-1701-B)"
+    },
+    {
+        "name": "USS Enterprise",
+        "sign": "NCC-1701-C",
+        "classification": "Ambassador",
+        "url": "https://memory-alpha.fandom.com/wiki/USS_Enterprise_(NCC-1701-C)"
+    },
+    {
+        "name": "USS Enterprise",
+        "sign": "NCC-1701-D",
+        "classification": "Constitution",
+        "url": "https://memory-alpha.fandom.com/wiki/USS_Enterprise_(NCC-1701-D)"
+    },
+    {
+        "name": "USS Enterprise",
+        "sign": "NCC-1701-E",
+        "classification": "Sovereign",
+        "url": "https://memory-alpha.fandom.com/wiki/USS_Enterprise_(NCC-1701-D)"
+    },
+    {
+        "name": "USS Galaxy",
+        "sign": "NCC-",
+        "classification": "Galaxy",
+        "details": "http://memory-alpha.org/wiki/USS_Galaxy"
+    },
+    {
+        "name": "USS Lakota",
+        "sign": "NCC-",
+        "classification": "Excelsior"
+    },
+    {
+        "name": "USS T`Kumbra",
+        "sign": "NCC-",
+        "classification": "Nebula",
+        "details": "http://memory-alpha.org/wiki/USS_T%27Kumbra"
+    },
+    {
+        "name": "USS Rhode Island",
+        "sign": "NCC-72201",
+        "classification": "Nova",
+        "details": "http://memory-alpha.org/wiki/USS_Rhode_Island"
+    },
+    {
+        "name": "USS Defiant",
+        "sign": "NX-74205",
+        "classification": "Defiant",
+        "details": "http://memory-alpha.org/wiki/USS_Rhode_Island"
+    },
+    {
+        "name": "USS Discovery",
+        "sign": "NCC-1031",
+        "classification": "Crossfield",
+        "details": "https://memory-alpha.fandom.com/wiki/USS_Discovery"
+    },
+    {
+        "name": "ISS Defiant",
+        "sign": "NX-74205",
+        "classification": "Defiant"
+    },
+    {
+        "name": "USS Crazy Horse",
+        "sign": "NCC-",
+        "classification": "Excelsior",
+        "details": "http://memory-alpha.org/wiki/USS_Crazy_Horse"
+    },
+    {
+        "name": "USS Yorktown",
+        "sign": "NCC-97422",
+        "classification": "",
+        "details": "http://memory-alpha.org/wiki/USS_Yorktown"
+    },
+    {
+        "name": "USS Yorktown",
+        "sign": "NCC-1717",
+        "classification": "",
+        "details": "https://memory-alpha.fandom.com/wiki/USS_Yorktown_(23rd_century)"
+    },
+    {
+        "name": "USS Yorktown",
+        "sign": "NCC-25345",
+        "classification": "",
+        "details": "https://memory-alpha.fandom.com/wiki/USS_Yorktown_(NCC-25345)"
+    },
+    {
+        "name": "USS Yorktown",
+        "sign": "NCC-61137",
+        "classification": "Zodiac",
+        "details": "https://memory-alpha.fandom.com/wiki/USS_Yorktown_(NCC-61137)"
+    },
+    {
+        "name": "USS Excelsior",
+        "sign": "NCC-2000",
+        "classification": "Excelsior",
+        "details": "https://memory-alpha.fandom.com/wiki/USS_Excelsior_(NCC-2000)"
+    },
+    {
+        "name": "USS Excelsior",
+        "sign": "NCC-27445",
+        "classification": "",
+        "details": "https://memory-alpha.fandom.com/wiki/USS_Excelsior_(NCC-27445)"
+    },
+    {
+        "name": "USS Excelsior",
+        "sign": "NCC-42037",
+        "classification": "",
+        "details": "https://memory-alpha.fandom.com/wiki/USS_Excelsior_(NCC-42037)"
+    },
+    {
+        "name": "USS Zheng He",
+        "sign": "NCC-86505",
+        "classification": "Inquiry",
+        "details": "http://memory-alpha.org/wiki/USS_Zheng_He"
+    },
+    {
+        "name": "USS Nathan Hale",
+        "sign": "NCC-86501",
+        "classification": "Inquiry",
+        "details": "http://memory-alpha.org/wiki/USS_Nathan_Hale"
+    },
+    {
+        "name": "USS Gorkon",
+        "sign": "NCC-40512",
+        "classification": "Excelsior",
+        "comment": "According to https://memory-alpha.fandom.com/wiki/Starships_(Decipher): sign is NCC-40521",
+        "details": "https://memory-alpha.fandom.com/wiki/USS_Gorkon"
+    },
+    {
+        "name": "USS Agamemnon",
+        "sign": "NCC-40512",
+        "classification": "Excelsior",
+        "comment": "According to https://memory-alpha.fandom.com/wiki/Starships_(Decipher): sign is NCC-40521",
+        "details": "https://memory-alpha.fandom.com/wiki/USS_Agamemnon"
+    },
+    {
+        "name": "USS Akira",
+        "sign": "NCC-62497",
+        "classification": "Akira",
+        "comment": "",
+        "details": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
+    },
+    {
+        "name": "USS Avalon",
+        "sign": "NCC-63887",
+        "classification": "Akira",
+        "comment": "",
+        "details": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
+    },
+    {
+        "name": "USS Firesword",
+        "sign": "NCC-64280",
+        "classification": "Akira",
+        "comment": "",
+        "details": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
+    },
+    {
+        "name": "USS Helios",
+        "sign": "NCC-63284",
+        "classification": "Akira",
+        "comment": "",
+        "details": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
+    },
+    {
+        "name": "USS Masaka",
+        "sign": "NCC-63277",
+        "classification": "Akira",
+        "comment": "",
+        "details": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
+    },
+    {
+        "name": "USS Rabin",
+        "sign": "NCC-63293",
+        "classification": "Akira",
+        "comment": "",
+        "details": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
+    },
+    {
+        "name": "USS Sentinel",
+        "sign": "NCC-68455",
+        "classification": "Akira",
+        "comment": "",
+        "details": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
+    },
+    {
+        "name": "USS Spector",
+        "sign": "NCC-63898",
+        "classification": "Akira",
+        "comment": "",
+        "details": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
+    },
+    {
+        "name": "USS Thunderchild",
+        "sign": "NCC-63549",
+        "classification": "Akira",
+        "comment": "",
+        "url": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
+    },
+    {
+        "name": "USS Wersching",
+        "sign": "NCC-63328",
+        "classification": "Akira",
+        "comment": "",
+        "url": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
+    },
+    {
+        "name": "(Name unknown)",
+        "sign": "NCC-63646",
+        "classification": "Akira",
+        "comment": "",
+        "details": "https://www.ex-astris-scientia.org/schematics/starfleet_ships1.htm"
+    }
+]
