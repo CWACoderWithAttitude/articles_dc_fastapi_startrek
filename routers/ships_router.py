@@ -12,7 +12,7 @@ def get_session() -> Generator[Session, Any, None]:
 class Settings(BaseSettings):
     db_url: str = ""
 
-    class Config:
+    class ConfigDict:
         env_file = ".env"
         env_file_encoding = "utf-8"
 
