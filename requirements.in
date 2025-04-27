@@ -8,4 +8,4 @@ sqlmodel
 pydantic-settings
 psycopg2
 prometheus_fastapi_instrumentator
-behave
+pytest-bdd
