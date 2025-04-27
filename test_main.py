@@ -6,33 +6,8 @@ from fastapi.testclient import TestClient
 from fastapi import status
 from sqlmodel import Session, create_engine, SQLModel
 from sqlmodel.pool import StaticPool
-
-
-@pytest.fixture(name="session")
-def session_fixture():
-    engine = create_engine(
-        "sqlite://", connect_args={"check_same_thread": False}, poolclass=StaticPool
-    )
-    SQLModel.metadata.create_all(engine)
-    with Session(engine) as session:
-        yield session
-
-
-@pytest.fixture(name="client")
-def client_fixture(session: Session) -> Generator[TestClient, Any, None]:
-    """
-    Create a test client for the FastAPI app.
-    This way we can depedency inject the test client into every test case."""
-
-    def get_session_override():
-        return session
-
-    app.dependency_overrides[get_session] = get_session_override
-
-    client = TestClient(app)
-    yield client
-    # clear the dependency overrides after the test
-    app.dependency_overrides.clear()
+from test_utils.mock_ships import _create_mock_ships
+from test_utils.fixtures import session_fixture, client_fixture
 
 
 def test_get_info(client: TestClient) -> None:
@@ -69,22 +44,6 @@ def test_create_ship(client: TestClient) -> None:
     assert response_json['sign'] == 'Test Sign'
     assert response_json['speed'] == 'Test Speed'
     assert response_json['id'] >= 1
-
-
-def _create_mock_ships(client: TestClient, count: int) -> None:
-    """
-    Create mock ships for testing.
-    """
-    for i in range(count):
-        client.post("/ships/", json={
-            "name": f"Test Ship {i}",
-            "classification": f"Test Classification {i}",
-            "sign": f"Test Sign {i}",
-            "speed": f"Test Speed {i}",
-            "captain": f"Test Captain {i}",
-            "comment": f"Test Comment {i}",
-            "url": f"http://example.com/{i}"
-        })
 
 
 def test_get_all_ships(client: TestClient) -> None:
