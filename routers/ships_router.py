@@ -4,6 +4,7 @@ from typing import Any, Generator, Sequence
 from pydantic_settings import BaseSettings
 
 from settings import Settings
+from ship_model import Ship
 
 
 def get_session() -> Generator[Session, Any, None]:
@@ -19,17 +20,6 @@ DATABASE_URL = settings.db_url or "sqlite:///./startrek-ships.db"
 # DATABASE_URL = "postgresql://star:trek@startrek_db/star-trek-db"
 print(f"Using database URL: {DATABASE_URL}")
 engine = create_engine(DATABASE_URL, echo=True)
-
-
-class Ship(SQLModel, table=True):
-    id: int | None = Field(default=None, primary_key=True)
-    name: str = Field(index=True)
-    classification: str = Field(index=True)
-    sign: str | None = Field(default=None, index=True)
-    speed: str | None = Field(default=None, index=True)
-    captain: str | None = Field(default=None, index=True)
-    comment: str | None = Field(default=None, index=True)
-    url: str | None = Field(default=None, index=False)
 
 
 SQLModel.metadata.create_all(engine)
