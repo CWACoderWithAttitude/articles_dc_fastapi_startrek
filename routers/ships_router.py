@@ -3,18 +3,12 @@ from sqlmodel import SQLModel, Field, Session, create_engine, select
 from typing import Any, Generator, Sequence
 from pydantic_settings import BaseSettings
 
+from settings import Settings
+
 
 def get_session() -> Generator[Session, Any, None]:
     with Session(engine) as session:
         yield session
-
-
-class Settings(BaseSettings):
-    db_url: str = ""
-
-    class ConfigDict:
-        env_file = ".env"
-        env_file_encoding = "utf-8"
 
 
 settings = Settings()
