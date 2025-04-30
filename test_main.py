@@ -6,6 +6,7 @@ from fastapi.testclient import TestClient
 from fastapi import status
 from sqlmodel import Session, create_engine, SQLModel
 from sqlmodel.pool import StaticPool
+from settings import Settings
 from test_utils.mock_ships import _create_mock_ships
 from test_utils.fixtures import session_fixture, client_fixture
 
@@ -186,3 +187,15 @@ def test_check_metrics_endpoint(client: TestClient) -> None:
         'text/plain; version=0.0.4')
     assert response.text.startswith(
         "# HELP python_gc_objects_collected_total Objects collected during gc")
+
+
+def test_settins_init():
+    settings = Settings()
+    assert settings != None
+
+
+def test_settins_get_db_url():
+    settings = Settings()
+    assert settings.db_url != None
+    assert isinstance(settings.db_url, str) is True
+    assert len(settings.db_url) > 5
