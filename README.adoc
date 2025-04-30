@@ -27,6 +27,9 @@ include::api-tests/bruno/startrek-ships/prometheus_reread_config.bru[lines=8..8]
 
 == Developement
 In general i'll stick to building the API in a TDD way. Tests are written in https://docs.pytest.org/en/stable/[pytest].
+Implemenrtation of pytest-bdd enables us to write business driven tests. Please refer to `get_ship.feature` and it implementation `get_ship.py` for details.
+Instead of using https://behave.readthedocs.io/en/latest/[behave] i decided 
+
 
 == Project Links
 - http://localhost:8000/docs[Swagger UI]

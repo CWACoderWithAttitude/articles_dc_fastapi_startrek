@@ -8,7 +8,7 @@
   ],
   "customizations": {
     // Configure properties specific to VS Code.
-    "vscode": {
+    "vscode": {q
       "settings": {
         "terminal.integrated.defaultProfile.linux": "zsh",
         "files.eol": "\n",

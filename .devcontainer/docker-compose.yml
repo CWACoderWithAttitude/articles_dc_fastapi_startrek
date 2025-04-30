@@ -85,10 +85,11 @@ services:
     command: --config.file=/config/alertmanager.yml --log.level=debug
     networks:
       articles_dc_fastapi_startrek-net:
-
+      
+  # https://github.com/dockage/mailcatcher
   mailcatcher:
     restart: on-failure
-    image: reachfive/fake-smtp-server
+    image: dockage/mailcatcher:0.9.0
     hostname: mailcatcher.local
     ports:
     - "1080:1080"
