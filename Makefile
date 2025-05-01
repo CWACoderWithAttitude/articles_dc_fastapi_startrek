@@ -4,8 +4,8 @@ test:
 
 # run tests on any change
 continuous_test:
-#	ptw *.py
-	ptw main.py settings.py test_*.py
+	ptw *.py
+#	ptw main.py settings.py test_*.py
 
 
 # generate coverage report as html

@@ -49,7 +49,6 @@ Instead of using https://behave.readthedocs.io/en/latest/[behave] i decided
 | http://localhost:8030/?orgId=1&from=now-6h&to=now&timezone=browser[Grafana] Visualize Metrics| OK
 | http://localhost:9093/#/alerts[AlertManager] | NOK
 | http://localhost:1080[Fake SMTP] Apps may send SMTP Mails to Pot 1025 | NOK
-
 |=== 
 
 == General Links

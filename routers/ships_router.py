@@ -1,7 +1,6 @@
 from fastapi import APIRouter, HTTPException, status, Depends
-from sqlmodel import SQLModel, Field, Session, create_engine, select
+from sqlmodel import SQLModel, Session, create_engine, select
 from typing import Any, Generator, Sequence
-from pydantic_settings import BaseSettings
 
 from settings import Settings
 from ship_model import Ship
