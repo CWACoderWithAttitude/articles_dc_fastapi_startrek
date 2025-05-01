@@ -10,9 +10,10 @@ receivers:
   - name: 'Mail Alert'
     email_configs:
       - smarthost: 'mailcatcher.local:1025'
-        auth_username: 'username'
+        auth_username: 'auth_username'
         auth_password: "IWontTellyou"
-        from: 'mom@friendly-robots.org'
+        from: 'hermes@friendly-robots.org'
         to: 'leela@planet-express.biz'
         headers:
           subject: 'Prometheus Mail Alerts'
+        require_tls: false

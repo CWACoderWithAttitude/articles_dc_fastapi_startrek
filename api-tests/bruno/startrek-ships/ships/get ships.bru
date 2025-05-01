@@ -1,27 +1,29 @@
 meta {
-  name: get 2 ships
+  name: get ships
   type: http
-  seq: 4
+  seq: 1
 }
 
 get {
-  url: http://localhost:{{app_port}}/ships?limit=2
+  url: http://localhost:{{app_port}}/ships
   body: none
   auth: none
 }
 
-params:query {
-  limit: 2
+assert {
+  res.status: eq 200
 }
 
 tests {
-  test("getting 2 ships should be OK", function () {
+  test("getting ships should be OK", function () {
     const data = res.getBody();
     expect(res.getStatus()).to.equal(200);
   });
    
   test("should return json", function () {
     const data = res.getBody();
-    expect(res.getBody()).to.have.lengthOf(2);
+    expect(res.getBody()).to.eql({
+      hello: "Bruno",
+    });
   });
 }

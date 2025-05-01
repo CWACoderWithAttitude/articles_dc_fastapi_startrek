@@ -1,11 +1,11 @@
 meta {
-  name: prometheus > reread config
+  name: alertmanager: reread config
   type: http
-  seq: 5
+  seq: 4
 }
 
 post {
-  url: http://localhost:{{prometheus_port}}/-/reload
+  url: http://localhost:8093/-/reload
   body: json
   auth: none
 }

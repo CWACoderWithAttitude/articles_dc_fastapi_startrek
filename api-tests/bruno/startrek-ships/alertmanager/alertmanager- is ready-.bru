@@ -1,29 +1,17 @@
 meta {
-  name: create ship
+  name: alertmanager: is ready?
   type: http
   seq: 3
 }
 
-post {
-  url: http://localhost:{{app_port}}/ships
+get {
+  url: http://localhost:8093/-/ready
   body: json
   auth: none
 }
 
 headers {
   Content-Type: application/json
-}
-
-body:json {
-  {
-          "name": "USS Franklin",
-          "sign": "NX-326",
-          "classification": "Starship",
-          "speed": "Warp 4",
-          "captain": "balthazar edison",
-          "comment": "lost ~2160, first warp 4 capable ship",
-          "url": "https://memory-alpha.fandom.com/wiki/Star_Trek:_The_Next_Generation"
-  }
 }
 
 assert {

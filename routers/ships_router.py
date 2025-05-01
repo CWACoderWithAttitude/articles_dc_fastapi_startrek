@@ -29,7 +29,7 @@ router = APIRouter(
 
 
 @router.post("/", response_model=Ship, tags=["startrek", "ships"], status_code=status.HTTP_201_CREATED)
-async def create_ship(ship: Ship, session: Session = Depends(get_session)):
+async def create_ship(ship: Ship, session: Session = Depends(get_session)) -> Ship:
     """
     Create a new ship.
     Args:
