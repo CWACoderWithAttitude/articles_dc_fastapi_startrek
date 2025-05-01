@@ -1,5 +1,10 @@
 = FastAPI - One Stop Shop
 
+== Status
+image::https://github.com/CWACoderWithAttitude/articles_dc_fastapi_startrek/actions/workflows/run_test.yml/badge.svg[Build Status]
+
+
+== TL;DR
 We will be building a full blown REST API based on FastAPI.
 We'll start with a simple API and then add more features to it.
 This will be a simple API that will allow us to create, read, update and delete data on ships from the Startrek universe.
