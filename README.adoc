@@ -3,16 +3,27 @@
 == Status
 image::https://github.com/CWACoderWithAttitude/articles_dc_fastapi_startrek/actions/workflows/run_test.yml/badge.svg[Build Status]
 
-
 == TL;DR
-We will be building a full blown REST API based on FastAPI.
-We'll start with a simple API and then add more features to it.
-This will be a simple API that will allow us to create, read, update and delete data on ships from the Startrek universe.
+We will be building a full blown REST API based on https://fastapi.tiangolo.com[FastAPI]. The result will be a simple CRUD API that allows us to create, read, update and delete data on ships from the Startrek universe. Data will be stored in a PostgreSQL database. The API will be monitored with Prometheus, Alertmanager and Grafana. The API will be tested with pytest and pytest-bdd.
 
-Everything will be done in devcontainers. So you can run the code in a container without having to install anything on your local machine - except Docker Desktop.
+Everything is done with containers:
+- Building an async FastAPI service backed by Postgresql
+- Testing using TDD and BDD
+- Monitoring with Prometheus
+- Alerting with Alertmanager
+- Visualizing collected metrics with Grafana
+- Adminer DB management
+- Mailcatcher to collect and show alert notifications
 
+So you can start building your service without having to install anything on your local machine - except Docker Desktop. I've not tested running with podman yet.
+
+=== Why?
+When developing a REST API you need to think about a lot of things. You need to think about how to test your code, how to monitor it, how to deploy it and how to make sure it runs in a container. This is a lot of stuff to think about. So I thought it would be a good idea to build a full blown REST API that covers all these topics. The goal is to show you how to do all this stuff in a simple way. The goal is not to build the best API ever. 
+
+=== Why devcontainers?
+We all know "Works on my machine" is a bad slogan. What if "works on my machine" simply means: great - ship it. What if we could turn "works on my machine" into "works in a container"? An envirnment that is consistent regardless of the host system.
+I want to show you why we should embrace the slogan "It works on my machine". Using devcontainers it is easy to build your product in an environment that's pretty close to your prod env. Let's face it - we all have different machines and different setups. When using containers starting from day one you can be suree 
 == Branching
-
 I'll split the implementation into multiple parts. Each part in its own branch - so you can skip any part you don't want to see.
 The branches will be named after the part they represent.
 The branches are:
@@ -33,6 +44,7 @@ The branches are:
 - The main FastAPI app exports prometheus metrics.
 - Metrics are collected by prometheus which runs in its own container.
     * In addtion to application metrics the host system runs node_exporter to export metrics of the system that runs the app stack
+- I implemented a simple alerting rule to show how to use alerting in prometheus. The example rule will kick in when one of the monitored containers is down. Alertmananger wil send a notification via email. The test notification can be seen in http://localhost:1080[mailcatcher].
 - Grafana is used to show dashboards visualizing the collected metrics.
 
 prometheus.yml implements monitoring for the main FastAPI app.
@@ -61,7 +73,7 @@ Instead of using https://behave.readthedocs.io/en/latest/[behave] i decided
 | http://localhost:8090/query?g0.expr=http_requests_total%7Binstance%3D%22articles_dc_fastapi_startrek.local%3A8000%22%2C+method%3D%22POST%22%7D&g0.show_tree=1&g0.tab=graph&g0.range_input=1h&g0.res_type=auto&g0.res_density=medium&g0.display_mode=lines&g0.show_exemplars=0[Prometheus > All Requests > POST] All Post Requests ^| OK 
 | http://localhost:8030/?orgId=1&from=now-6h&to=now&timezone=browser[Grafana] Visualize Metrics ^| OK
 | http://localhost:8093/#/alerts[AlertManager] ^| NOK
-| http://localhost:1080[Fake SMTP] Apps may send SMTP Mails to Pot 1025 ^| OK
+| http://localhost:1080[Mailcatcher - Fake SMTP] Apps may send SMTP Mails to Pot 1025 ^| OK
 |=== 
 
 == General Links
@@ -69,8 +81,16 @@ Instead of using https://behave.readthedocs.io/en/latest/[behave] i decided
 - https://fastapi.tiangolo.com/[fastapi.tiangolo.com] is the official documentation for FastAPI.
 - https://www.usebruno.com[Bruno] makes a fine replacement for Postman, Insomnia and other API testing tools.
 
+I miss to list to many great articles of outstanding authors - just because i was in a hurry or too lazy to keep a note. If you have a great article that you think should be listed here please let me know.
+
 == ToDos
 - https://www.freecodecamp.org/news/how-to-run-github-actions-locally/s[Test Guhub Actions locally] w act
-- Integrate alerting into the setup. This will be done with https://prometheus.io/docs/alerting/latest/alertmanager/[AlertManager] and https://grafana.com/docs/grafana/latest/alerting/notifications/[Grafana Alerting] and https://blog.devops.dev/send-email-alerts-using-prometheus-alert-manager-16df870144a4[Send email alerts using Prometheus Alert Manager]
+- Integrate alerting into the setup. This will be done with 
+  * [.line-through]#https://prometheus.io/docs/alerting/latest/alertmanager/[AlertManager]# and 
+  * https://grafana.com/docs/grafana/latest/alerting/notifications/[Grafana Alerting] and
+  * [.line-through]#https://blog.devops.dev/send-email-alerts-using-prometheus-alert-manager-16df870144a4[Send email alerts using Prometheus Alert Manager]#
 - [.line-through]#Add https://github.com/haravich/fake-smtp-server[fake smtp] server to enanble local test of alertmanager and grafana#
 - Add https://dev.to/sivakumarmanoharan/caching-in-fastapi-unlocking-high-performance-development-20ej[Caching in FastAPI: Unlocking High-Performance Development]
+- Integrate Keycloak for authentication and authorization
+- Run app on Firebase
+- Depoloy app on AWS using CDK and AWS Lambda
