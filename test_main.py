@@ -1,12 +1,10 @@
-from typing import Any, Generator
+import json
+from typing import Any
+
+from httpx import Response
 from main import app
-from routers.ships_router import get_session
-import pytest
 from fastapi.testclient import TestClient
 from fastapi import status
-from sqlmodel import Session, create_engine, SQLModel
-from sqlmodel.pool import StaticPool
-from settings import Settings
 from test_utils.mock_ships import _create_mock_ships
 from test_utils.fixtures import session_fixture, client_fixture
 
@@ -65,7 +63,7 @@ def test_ship_by_non_existing_id(client: TestClient) -> None:
     Test the /ships/{ship_id} endpoint.
     """
     _create_mock_ships(client, 5)
-    response = client.get("/ships/6")
+    response: Response = client.get("/ships/6")
     assert response.status_code == status.HTTP_404_NOT_FOUND
 
 
@@ -117,7 +115,7 @@ def test_update_existing_ship(client: TestClient) -> None:
     response_json = response.json()
     assert response_json != None
     ship_id = response_json['id']
-    response = client.put(f"/ships/{ship_id}", json={
+    response: Response = client.put(f"/ships/{ship_id}", json={
         "name": "Updated Ship",
         "classification": "Updated Classification",
         "sign": "Updated Sign",
@@ -137,8 +135,8 @@ def test_update_non_existing_ship(client: TestClient) -> None:
     """
     Test the /ships/ endpoint.
     """
-    ship_id = 9999  # response_json['id']
-    response = client.put(f"/ships/{ship_id}", json={
+    ship_id_does_not_exist = 9999  # response_json['id']
+    response: Response = client.put(f"/ships/{ship_id_does_not_exist}", json={
         "name": "Updated Ship",
         "classification": "Updated Classification",
         "sign": "Updated Sign",
@@ -151,7 +149,7 @@ def test_update_non_existing_ship(client: TestClient) -> None:
     assert response.headers['content-type'] == 'application/json'
     response_json = response.json()
     assert response_json != None
-    assert response_json['detail'] == f'Ship {ship_id} not found'
+    assert response_json['detail'] == f'Ship {ship_id_does_not_exist} not found'
 
 
 def test_delete_non_existing_ship(client: TestClient) -> None:
@@ -160,7 +158,7 @@ def test_delete_non_existing_ship(client: TestClient) -> None:
     """
     _create_mock_ships(client, 11)
     ship_id = 4711
-    response = client.delete(f"/ships/{ship_id}")
+    response: Response = client.delete(f"/ships/{ship_id}")
     assert response.status_code == status.HTTP_404_NOT_FOUND
 
 
@@ -177,13 +175,66 @@ def test_delete_existing_ship(client: TestClient) -> None:
     assert len(r_json) == 10
 
 
-def test_check_metrics_endpoint(client: TestClient) -> None:
+def test_upload_json_invalid_datatype(client: TestClient) -> None:
     """
-    Test the /metrics endpoint.
+    Test the /upload-json endpoint with invalid JSON data.s
     """
-    response = client.get("/metrics")
-    assert response.status_code == status.HTTP_200_OK
-    assert response.headers['content-type'].startswith(
-        'text/plain; version=0.0.4')
-    assert response.text.startswith(
-        "# HELP python_gc_objects_collected_total Objects collected during gc")
+    payload = "invalid-json"
+    response: Response = client.post("/ships/upload-json", content=payload,
+                                     headers={"Content-Type": "application/json"})
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+    assert "Invalid JSON data" in response.json()["detail"]
+
+
+def test_upload_json_invalid_json(client: TestClient) -> None:
+    """
+    Test the /upload-json endpoint with valid JSON data.
+    """
+    payload: dict[str, str] = {"key": "value"}
+    response: Response = client.post("/ships/upload-json", json=payload)
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+    assert response.json() == {"detail": "Invalid JSON data"}
+
+
+def test_upload_single_ship_from_json(client: TestClient) -> None:
+    """
+    Test the /upload-json for single ship
+    """
+    with open('upload_single_ship.json', 'r') as file:
+        payload = json.load(file)
+    assert payload != None
+    response: Response = client.post("/ships/upload-json", json=payload)
+    # assert response.status_code == status.HTTP_201_CREATED
+    # getter = client.get(f"/ships/1")
+    # assert getter.status_code == status.HTTP_200_OK
+
+
+def _test_upload_two_ships_from_json_upload(client: TestClient) -> None:
+    """
+    Test the /upload-json for single ship
+    """
+    with open('upload_single_ship.json', 'r') as file:
+        payload = json.load(file)
+    payload = [{
+        "name": "Updated Ship1",
+        "classification": "Updated Classification",
+        "sign": "Updated Sign",
+        "speed": "Updated Speed",
+        "captain": "Updated Captain",
+        "comment": "Updated Comment",
+        "url": "http://example.com/updated"
+    }, {
+        "name": "Updated Ship2",
+        "classification": "Updated Classification",
+        "sign": "Updated Sign",
+        "speed": "Updated Speed",
+        "captain": "Updated Captain",
+        "comment": "Updated Comment",
+        "url": "http://example.com/updated"
+    }]
+    assert payload != None
+    response: Response = client.post("/ships/upload-json", json=payload)
+    assert response.status_code == status.HTTP_201_CREATED
+    getter = client.get(f"/ships")
+    assert getter.status_code == status.HTTP_200_OK
+    assert len(getter.json()) == 2

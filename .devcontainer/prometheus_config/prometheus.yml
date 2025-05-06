@@ -10,7 +10,8 @@ alerting:
     - static_configs:
         - targets: ['alertmanager.local:9093']
 rule_files:
-  - rules.yml
+  #- rules.yml
+  - alert_rules.yml
   
 scrape_configs:
 - job_name: prometheus
@@ -30,11 +31,12 @@ scrape_configs:
   static_configs:
     - targets: ['articles_dc_fastapi_startrek.local:8000']
 
-# this node doesn't exist and will trigger an alert
+# this target doesn't exist and will trigger an alert
 - job_name: 'dummy_node'
   static_configs:
     - targets: ['localhost:1234']
 
+# metrics provided by node_exporter running on real hardware
 - job_name: 'host'
   static_configs:
     - targets: ['host.docker.internal:9100']

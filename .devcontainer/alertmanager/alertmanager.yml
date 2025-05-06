@@ -12,8 +12,8 @@ receivers:
       - smarthost: 'mailcatcher.local:1025'
         auth_username: 'auth_username'
         auth_password: "IWontTellyou"
-        from: 'hermes@friendly-robots.org'
-        to: 'leela@planet-express.biz'
+        from: 'geordi.laforge@ncc1701e.starfleet.net'
+        to: 'william.t.riker@ncc1701e.starfleet.net'
         headers:
           subject: 'Prometheus Mail Alerts'
         require_tls: false
