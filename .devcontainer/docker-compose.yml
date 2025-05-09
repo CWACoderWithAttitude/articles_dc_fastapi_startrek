@@ -54,7 +54,7 @@ services:
       - ${prometheus_port}:9090
     volumes:
       - ./prometheus_config/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./prometheus_config/rules.yml:/etc/prometheus/rules.yml
+      - ./prometheus_config/alert_rules.yml:/etc/prometheus/alert_rules.yml
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--web.enable-lifecycle'

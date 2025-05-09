@@ -1,0 +1,18 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+networking:
+  disableDefaultCNI: false
+  kubeProxyMode: ipvs
+  apiServerAddress: "127.0.0.1:6443"
+  apiServerPort: 6443
+  kubelet:
+    extraArgs:
+      node-ip: "127.0.0.1"
+  containerdConfigPatches:
+    - |
+      [plugins."io.containerd.grpc.v1.cri".registry]
+        config = {
+          [plugins."io.containerd.grpc.v1.cri".registry.configs."docker.io".auth]
+            username = "your-username"
+            password = "your-password"
+        }

@@ -6,6 +6,7 @@ pytest-cov
 httpx
 sqlmodel
 pydantic-settings
-psycopg2
+#psycopg2
+psycopg2-binary
 prometheus_fastapi_instrumentator
 pytest-bdd

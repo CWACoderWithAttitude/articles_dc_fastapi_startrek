@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-app
+  labels:
+    app: fastapi
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fastapi
+  template:
+    metadata:
+      labels:
+        app: fastapi
+    spec:
+      containers:
+      - name: fastapi-container
+        image: host.docker.internal:5050/startrek_ships:0.1
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8001
+        env:
+        - name: ENV_VAR_NAME
+          value: "your-env-var-value"

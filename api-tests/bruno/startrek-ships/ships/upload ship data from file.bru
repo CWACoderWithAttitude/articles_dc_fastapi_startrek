@@ -1,0 +1,39 @@
+meta {
+  name: upload ship data from file
+  type: http
+  seq: 8
+}
+
+post {
+  url: http://localhost:{{app_port}}/upload-json
+  body: file
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:file {
+  file: @file(/Users/volker/Dev/volker/dev-container-repo/articles/articles_dc_fastapi_startrek/ship_seed_data.json) @contentType(application/json; charset=utf-8)
+}
+
+assert {
+  res.status: eq 201
+}
+
+tests {
+  test("should be able to login", function () {
+    const data = res.getBody();
+    expect(res.getStatus()).to.equal(201);
+  });
+   
+  test("verify individual fields in the returned data", function () {
+    const data = res.getBody();
+    expect(res.getBody().name).to.eql("USS Franklin");
+    expect(res.getBody()["sign"]).to.eql("NX-326");
+    expect(res.getBody()["classification"]).to.eql("Starship");
+    expect(res.getBody()["captain"]).to.eql("balthazar edison");
+    expect(res.getBody()["url"]).to.eql("https://memory-alpha.fandom.com/wiki/Star_Trek:_The_Next_Generation");
+  });
+}

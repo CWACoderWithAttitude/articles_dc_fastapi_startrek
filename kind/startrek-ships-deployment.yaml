@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: startrek-ships
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: startrek-ships
+  template:
+    metadata:
+      labels:
+        app: startrek-ships
+    spec:
+      containers:
+      - name: startrek-ships
+        image: startrek-ship:0.3
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: startrek-ships-svc
+  namespace: default
+spec:
+  selector:
+    app: startrek-ships
+  type: NodePort
+  ports:
+  - name: http
+    port: 8001
+    targetPort: 8001
+    nodePort: 30000

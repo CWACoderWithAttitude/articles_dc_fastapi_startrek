@@ -1,0 +1,13 @@
+[
+    {
+        "name": "USS Cerritos",
+        "sign": "NCC-75567",
+        "classification": "California"
+    },
+    {
+        "name": "USS Kelcie Mae",
+        "sign": "NCC-618",
+        "classification": "Kelcie Mae",
+        "details": "https://memory-alpha.fandom.com/wiki/USS_Kelcie_Mae"
+    }
+]

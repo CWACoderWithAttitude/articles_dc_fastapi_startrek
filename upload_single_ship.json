@@ -1,0 +1,9 @@
+{
+    "name": "USS Single Test Ship",
+    "classification": "Test Classification",
+    "sign": "Test Sign",
+    "speed": "Test Speed",
+    "captain": "Test Captain",
+    "comment": "Test Comment",
+    "url": "http://example.com"
+}
