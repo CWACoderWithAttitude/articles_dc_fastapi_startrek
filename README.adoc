@@ -4,7 +4,12 @@
 image::https://github.com/CWACoderWithAttitude/articles_dc_fastapi_startrek/actions/workflows/run_test.yml/badge.svg[Build Status]
 
 == TL;DR
-We will be building a full blown REST API based on https://fastapi.tiangolo.com[FastAPI]. The result will be a simple CRUD API that allows us to create, read, update and delete data on ships from the Startrek universe. Data will be stored in a PostgreSQL database. The API will be monitored with Prometheus, Alertmanager and Grafana. The API will be tested with pytest and pytest-bdd.
+We will be building a full blown REST API based on https://fastapi.tiangolo.com[FastAPI]. with all bells and whistles in devcontainers.
+
+== Whats inside?
+ The result will be a simple CRUD API that allows us to create, read, update and delete data on ships from the Startrek universe. Data will be stored in a PostgreSQL database. The API will be monitored with Prometheus, Alertmanager and Grafana. The API will be tested with pytest and pytest-bdd.
+
+=== Components
 
 Everything is done with containers:
 - Building an async FastAPI service backed by Postgresql
@@ -94,3 +99,4 @@ I miss to list to many great articles of outstanding authors - just because i wa
 - Integrate Keycloak for authentication and authorization
 - Run app on Firebase
 - Depoloy app on AWS using CDK and AWS Lambda
+- Add Kong API Gateway
