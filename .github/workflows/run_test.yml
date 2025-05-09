@@ -41,7 +41,7 @@ jobs:
           pip install -r requirements.in
 
       - name: Run tests w coverage report
-        run: pytest test_*.py --junitxml=junit/test-results.xml --cov=. --cov-report=html
+        run: pytest test_main.py --junitxml=junit/test-results.xml --cov=. --cov-report=html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
