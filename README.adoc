@@ -85,6 +85,7 @@ Instead of using https://behave.readthedocs.io/en/latest/[behave] i decided
 - https://www.youtube.com/@ArjanCodes[@ArjanCodes] is a great channel to learn about FastAPI and Python in general.
 - https://fastapi.tiangolo.com/[fastapi.tiangolo.com] is the official documentation for FastAPI.
 - https://www.usebruno.com[Bruno] makes a fine replacement for Postman, Insomnia and other API testing tools.
+- https://medium.com/@imyounas/setting-up-kind-kubernetes-cluster-with-prometheus-grafana-and-k6-for-monitoring-and-stress-14d658c4e66e [Setting up kind Kubernetes cluster with Prometheus, Grafana and K6 for monitoring and stress testing] - a great article on how to set up a kind cluster with prometheus and grafana.
 
 I miss to list to many great articles of outstanding authors - just because i was in a hurry or too lazy to keep a note. If you have a great article that you think should be listed here please let me know.
 
