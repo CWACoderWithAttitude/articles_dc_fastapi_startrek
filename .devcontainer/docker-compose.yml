@@ -18,7 +18,18 @@ services:
       - startrek_db
     networks:
       articles_dc_fastapi_startrek-net:
-
+  dc_spring_boot:
+    image: mcr.microsoft.com/devcontainers/java:17
+    volumes:
+      -  ..:/src:cached
+    working_dir: /src/spring_boot
+    container_name: dc_spring_boot
+    #depends_on:
+    #  - startrek_db
+    command: >
+      bash -c "sleep infinity"
+    networks:
+      articles_dc_fastapi_startrek-net:
   startrek_db:
   #image: postgres:17.4-alpine3.21
     image: postgres:14.1-alpine

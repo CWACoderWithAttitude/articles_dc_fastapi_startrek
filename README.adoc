@@ -97,6 +97,7 @@ I miss to list to many great articles of outstanding authors - just because i wa
   * [.line-through]#https://blog.devops.dev/send-email-alerts-using-prometheus-alert-manager-16df870144a4[Send email alerts using Prometheus Alert Manager]#
 - [.line-through]#Add https://github.com/haravich/fake-smtp-server[fake smtp] server to enanble local test of alertmanager and grafana#
 - Add https://dev.to/sivakumarmanoharan/caching-in-fastapi-unlocking-high-performance-development-20ej[Caching in FastAPI: Unlocking High-Performance Development]
+- Add https://rameshfadatare.medium.com/spring-boot-crud-example-with-postgresql-926c87f0129a0[Spring Boot CRUD Example with PostgreSQL]
 - Integrate Keycloak for authentication and authorization
 - Run app on Firebase
 - Depoloy app on AWS using CDK and AWS Lambda
