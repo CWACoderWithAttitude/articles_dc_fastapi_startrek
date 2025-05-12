@@ -22,6 +22,7 @@ services:
     image: mcr.microsoft.com/devcontainers/java:17
     volumes:
       -  ..:/src:cached
+      -  $HOME/.m2:/home/vscode/.m2:cached
     working_dir: /src/spring_boot
     container_name: dc_spring_boot
     #depends_on:

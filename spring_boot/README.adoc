@@ -1,0 +1,10 @@
+= Java Devcontainer
+
+Based on the microsofts https://hub.docker.com/r/microsoft/devcontainers-java[Java Devcontainer image]. Includes https://github.com/devcontainers-extra/features/tree/main/src/maven-sdkman[Maven feature]. This devcontainer is designed to provide a development environment for Java applications using Spring Boot. It includes essential tools and configurations to streamline the development process.
+
+== Spring Boot Project Setup
+The contained project is based on https://rameshfadatare.medium.com/spring-boot-crud-example-with-postgresql-926c87f0129a[this example project].
+https://start.spring.io/#!type=maven-project&language=java&platformVersion=3.4.5&packaging=jar&jvmVersion=17&groupId=com.example&artifactId=spring-boot-postgresql-crud&name=spring-boot-postgresql-crud&description=Demo%20project%20for%20Spring%20Boot&packageName=com.example.spring-boot-postgresql-crud&dependencies=web,data-jpa,postgresql,devtools[Here's the initializr link to create a Spring Boot project].
+
+== Links:
+* http://localhost:8010/?pgsql=startrek_db&username=star[Adminer]
