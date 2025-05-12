@@ -1,0 +1,20 @@
+meta {
+  name: Update product
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://localhost:8088/api/products/1
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "id": 1,
+    "name": "Updated Laptop",
+    "description": "A high-performance laptop.",
+    "price": 1200
+  }
+}
