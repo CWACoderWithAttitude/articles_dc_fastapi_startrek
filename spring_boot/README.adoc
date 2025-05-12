@@ -8,3 +8,7 @@ https://start.spring.io/#!type=maven-project&language=java&platformVersion=3.4.5
 
 == Links:
 * http://localhost:8010/?pgsql=startrek_db&username=star[Adminer]
+
+== ToDos
+* Implement the following features:
+** https://faun.pub/java-23-springboot-3-3-4-metrics-micrometer-prometheus-actuator-part-5-f67f0581815c[Spring Boot 3.4.5 - Micrometer, Prometheus, Actuator]
