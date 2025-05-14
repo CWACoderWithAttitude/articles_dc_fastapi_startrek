@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource; // Add this import
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.spring_boot_postgresql_crud.model.RoA;
 import com.example.spring_boot_postgresql_crud.model.RoADTO;
 import com.example.spring_boot_postgresql_crud.service.RoAService;
-import com.google.gson.JsonObject;
+
+import io.micrometer.core.instrument.MeterRegistry;
 
 @RestController
 @RequestMapping("/api/roa")
@@ -88,5 +90,14 @@ public class RoAController {
             ResponseEntity.internalServerError().body("Error parsing seed data:" + e.getMessage());
         }
         return ResponseEntity.ok("Seed data loaded successfully");
+    }
+
+    @Component
+    public class CustomMetrics {
+        public CustomMetrics(MeterRegistry registry) {
+            // registry.counter("custom_metric_counter").increment();
+
+            registry.gauge("number_of_rules", roaService.getAllRulesOfAqcuisition().size());
+        }
     }
 }
