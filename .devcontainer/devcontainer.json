@@ -29,7 +29,8 @@
         "qwtel.sqlite-viewer",
         "ms-azuretools.vscode-docker",
         "ms-vscode.makefile-tools",
-        "GitHub.copilot-chat"
+        "GitHub.copilot-chat",
+        "cweijan.vscode-myssql-client2"
       ]
     }
   },

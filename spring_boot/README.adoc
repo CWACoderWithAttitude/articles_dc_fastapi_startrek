@@ -12,3 +12,6 @@ https://start.spring.io/#!type=maven-project&language=java&platformVersion=3.4.5
 == ToDos
 * Implement the following features:
 ** https://faun.pub/java-23-springboot-3-3-4-metrics-micrometer-prometheus-actuator-part-5-f67f0581815c[Spring Boot 3.4.5 - Micrometer, Prometheus, Actuator]
+
+== References
+* https://medium.com/@chameerar/spring-boot-hibernate-with-microsoft-sql-server-dbdb550bb9dd[Spring Boot Hibernate with Microsoft SQL Server]

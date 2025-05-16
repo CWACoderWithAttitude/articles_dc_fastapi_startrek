@@ -114,6 +114,35 @@ services:
     networks:
       articles_dc_fastapi_startrek-net:
 
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql
+    hostname: mssql.local
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=${mssql_sa_password}
+      - MSSQL_PID=Developer
+    ports:
+      - "${mssql_port}:1433"
+    volumes:
+      - mssql_data:/var/opt/mssql
+    networks:
+      articles_dc_fastapi_startrek-net:
+  # azure-sql-edge:
+  #   image: mcr.microsoft.com/azure-sql-edge
+  #   container_name: azure-sql-edge
+  #   hostname: azure-sql-edge.local
+  #   environment:
+  #     - ACCEPT_EULA=Y
+  #     - SA_PASSWORD=${mssql_sa_password}
+  #     - MSSQL_PID=Developer
+  #   ports:
+  #     - "${mssql_port}:1433"
+  #   volumes:
+  #     - mssql_data:/var/opt/mssql
+  #   networks:
+  #     articles_dc_fastapi_startrek-net:
+
 networks:
   articles_dc_fastapi_startrek-net:
 
@@ -126,3 +155,5 @@ volumes:
     driver: local
   data:
     name: kener_db
+  mssql_data:
+    driver: localp
