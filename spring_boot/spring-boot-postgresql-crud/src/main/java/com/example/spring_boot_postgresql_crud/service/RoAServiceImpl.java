@@ -1,7 +1,6 @@
 package com.example.spring_boot_postgresql_crud.service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -45,6 +44,11 @@ public class RoAServiceImpl implements RoAService {
         roa.setRuleNumber(roaDTO.ruleNumber());
         roa.setComment(roaDTO.comment());
         return roa;
+    }
+
+    @Override
+    public void deleteRuleOfAcquisition(Long id) {
+        roaRepository.deleteById(id);
     }
 
 }

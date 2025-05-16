@@ -10,6 +10,8 @@ public interface RoAService {
     RoADTO saveRoA(RoADTO ruleOfAqcuisition);
 
     List<RoADTO> getAllRulesOfAqcuisition();
+
+    void deleteRuleOfAcquisition(Long id);
     /*
      * 
      * Optional<RoADTO> getRuletById(Long id);
@@ -18,7 +20,6 @@ public interface RoAService {
      * 
      * RoADTO updateRoA(Long id, RoADTO ruleOfAqcuisition);
      * 
-     * void deleteRoA(Long id);
      */
 
 }
