@@ -20,6 +20,9 @@ services:
       articles_dc_fastapi_startrek-net:
   dc_spring_boot:
     image: mcr.microsoft.com/devcontainers/java:17
+    hostname: dc-spring-boot.local
+    env_file:
+      - .env
     volumes:
       -  ..:/src:cached
       -  $HOME/.m2:/home/vscode/.m2:cached
@@ -126,6 +129,15 @@ services:
       - "${mssql_port}:1433"
     volumes:
       - mssql_data:/var/opt/mssql
+    networks:
+      articles_dc_fastapi_startrek-net:
+  mssql-tools:
+    image: mcr.microsoft.com/mssql-tools:latest
+    container_name: mssql-tools
+    #hostname: mssql.local
+    environment:
+      - MSSQL_PASSWORD=${mssql_sa_password}
+    command: ["bash", "-c", "sleep infinity && bash"]
     networks:
       articles_dc_fastapi_startrek-net:
   # azure-sql-edge:

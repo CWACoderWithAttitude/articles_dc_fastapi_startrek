@@ -30,6 +30,11 @@ scrape_configs:
   metrics_path: /metrics
   static_configs:
     - targets: ['articles_dc_fastapi_startrek.local:8000']
+- job_name: 'Spring-Boot MSSQL Book Api'
+  scrape_interval: 10s
+  metrics_path: /actuator/prometheus
+  static_configs:
+    - targets: ['dc-spring-boot.local:8080']
 
 # this target doesn't exist and will trigger an alert
 - job_name: 'dummy_node'
