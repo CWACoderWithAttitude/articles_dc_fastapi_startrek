@@ -1,0 +1,15 @@
+meta {
+  name: Get non-existing game
+  type: http
+  seq: 21
+}
+
+get {
+  url: http://localhost:8088/games/4711
+  body: json
+  auth: inherit
+}
+
+assert {
+  res.status: eq 404
+}

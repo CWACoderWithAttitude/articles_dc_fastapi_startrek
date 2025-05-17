@@ -1,23 +1,23 @@
 meta {
-  name: Create Book
+  name: Create Game
   type: http
-  seq: 16
+  seq: 17
 }
 
 post {
-  url: http://localhost:8088/book/new
+  url: http://localhost:8088/games/new
   body: json
   auth: inherit
 }
 
 body:json {
   {
-    "name": "Schöne Bescherung"  
+    "title": "Die Siedler von Catan"  
   }
 }
 
 assert {
-  res.status: eq 201
+  res.status: eq 200
 }
 
 tests {
@@ -28,8 +28,8 @@ tests {
    
   test("should return json", function () {
     const data = res.getBody();
-    expect(res.getBody()).to.eql({
-      hello: "Bruno",
-    });
+    expect(data).to.have.property("title");
+    expect(data.title).to.eql("Die Siedler von Catan");
+    
   });
 }

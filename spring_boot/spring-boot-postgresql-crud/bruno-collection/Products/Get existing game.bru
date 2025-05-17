@@ -1,0 +1,11 @@
+meta {
+  name: Get existing game
+  type: http
+  seq: 22
+}
+
+get {
+  url: http://localhost:8088/games/2
+  body: json
+  auth: inherit
+}
