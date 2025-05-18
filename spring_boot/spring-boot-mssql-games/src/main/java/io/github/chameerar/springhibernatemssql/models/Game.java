@@ -17,28 +17,18 @@ public class Game {
     @GeneratedValue
     private Long id;
     private String title;
+    private String ean13;
+    private String publisher;
+    private String genre;
+    private Integer minNumberofPlayers;
+    private Integer maxNumberofPlayers;
+    private Integer minAge;
+    private String typical_duration;
 
     public Game() {
     }
 
     public Game(String title) {
-        this.title = title;
-    }
-
-    public Long getId() {
-
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setTitle(String title) {
         this.title = title;
     }
 }
